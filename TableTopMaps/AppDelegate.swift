@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     var window: UIWindow?
     
-    var maps = [Map]()
+    var model = TableTopMapsDataModel()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         initMaps()
@@ -132,9 +132,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: initialize data model
     
     private func initMaps() {
-        maps.append(Map(name: "Burg Wittgenstein"))
-        maps.append(Map(name: "Höhle unter Burg"))
-        maps.append(Map(name: "Kanalisation Altdorf"))
+        var folder = MapFolder(name: "Der innere Feind")
+        model.maps.append(folder)
+        
+        folder.subElements.append(Map(name: "Burg Wittgenstein"))
+        folder.subElements.append(Map(name: "Höhle unter Burg"))
+        folder.subElements.append(Map(name: "Kanalisation Altdorf"))
+        
+        folder = MapFolder(name: "ShadowRun")
+        model.maps.append(folder)
+        folder.subElements.append(Map(name: "Nachtclub"))
+        folder.subElements.append(Map(name: "Basis Schwarze Orchidee"))
     }
 
 }

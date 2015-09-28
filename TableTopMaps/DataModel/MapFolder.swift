@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MapFolder {
+class MapFolder: MapListElement {
     
     var name: String
     

@@ -13,15 +13,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-
+    var model = (UIApplication.sharedApplication().delegate as! AppDelegate).model
+    var level = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+        */
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -39,6 +42,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func insertNewObject(sender: AnyObject) {
+        /*
         let context = self.fetchedResultsController.managedObjectContext
         let entity = self.fetchedResultsController.fetchRequest.entity!
         let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
@@ -56,6 +60,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             //print("Unresolved error \(error), \(error.userInfo)")
             abort()
         }
+        */
     }
 
     // MARK: - Segues
@@ -63,11 +68,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-            let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
+                //let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
+                /*
+                let map = self.objectForIndexPath(indexPath)
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                controller.detailItem = map
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
+                */
             }
         }
     }
@@ -75,12 +83,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 0
+        return 1
+        // return self.fetchedResultsController.sections?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.maps.count
+        /*
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
+        */
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -91,10 +103,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        /*
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
             context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
@@ -108,11 +121,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 abort()
             }
         }
+        */
     }
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        let map = objectForIndexPath(indexPath)
+        if let map = map {
+            cell.textLabel!.text = map.name
+        }
+        /*
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
         cell.textLabel!.text = object.valueForKey("timeStamp")!.description
+        */
     }
 
     // MARK: - Fetched results controller
@@ -195,6 +215,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
          self.tableView.reloadData()
      }
      */
+    
+    func objectForIndexPath(indexPath: NSIndexPath) -> MapListElement? {
+        var list = model.maps
+        var result: MapListElement?
+        for i in 0..<indexPath.length {
+            let index = indexPath.indexAtPosition(i)
+            result = list[index]
+            if let r = result where !r.isLeaf {
+                list = r.subElements
+            }
+        }
+        return result
+    }
 
 }
 
