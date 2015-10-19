@@ -16,7 +16,6 @@ extension Array {
                 append(elem)
             }
         }
-        
     }
     
 }

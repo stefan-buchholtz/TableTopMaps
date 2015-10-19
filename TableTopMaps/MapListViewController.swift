@@ -13,6 +13,7 @@ class MapListViewController: UITableViewController {
     
     var detailViewController: MapViewController? = nil
     var editMode = false
+    var needsReload = false
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: nil, action: "newMapTapped:")
     let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
@@ -55,6 +56,10 @@ class MapListViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+        if needsReload {
+            tableView.reloadData()
+            needsReload = false
+        }
         super.viewWillAppear(animated)
     }
 
@@ -93,7 +98,7 @@ class MapListViewController: UITableViewController {
             parentFolder.addMapsObject(newMap)
         }
         model.saveContext()
-        self.reloadData()
+        self.reloadData(false)
     }
         func newFolderTapped(sender: AnyObject) {
         getName("Name des Ordners", message: "Bitte geben Sie einen Namen für den neuen Ordner an.", callback: newFolder)
@@ -108,24 +113,29 @@ class MapListViewController: UITableViewController {
             parentFolder.addSubFoldersObject(newFolder)
         }
         model.saveContext()
-        self.reloadData()
+        self.reloadData(false)
     }
     
     func deleteTapped(sender: AnyObject) {
-        if let selection = tableView.indexPathsForSelectedRows {
-            let selectedObjects = selection.map(self.objectForIndexPath)
-            for object in selectedObjects {
-                if let managedObject = object as? NSManagedObject {
-                    managedObjectContext.deleteObject(managedObject)
-                }
+        for object in self.getSelectedObjects() {
+            if let managedObject = object as? NSManagedObject {
+                managedObjectContext.deleteObject(managedObject)
             }
-            model.saveContext()
-            self.reloadData()
         }
+        model.saveContext()
+        self.reloadData(false)
     }
     
     func moveTapped(sender: AnyObject) {
         performSegueWithIdentifier("selectFolder", sender: self)
+    }
+    
+    func moveSelectedItemsTo(folder: MapFolder?) {
+        for var object in getSelectedObjects() {
+            object.parent = folder
+        }
+        model.saveContext()
+        self.reloadData(true)
     }
     
     func getName(prompt: String, message: String?, callback: (String) -> Void) {
@@ -146,11 +156,21 @@ class MapListViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let indexPath = self.tableView.indexPathForSelectedRow where segue.identifier == "showMap" && !editMode {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MapViewController
-            controller.map = objectForIndexPath(indexPath) as? Map
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            controller.navigationItem.leftItemsSupplementBackButton = true
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showMap":
+                if let indexPath = self.tableView.indexPathForSelectedRow where !editMode {
+                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MapViewController
+                    controller.map = objectForIndexPath(indexPath) as? Map
+                    controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                }
+            case "selectFolder":
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! FolderSelectionViewController
+                controller.mapListViewController = self
+            default:
+                break
+            }
         }
     }
     
@@ -297,9 +317,18 @@ class MapListViewController: UITableViewController {
      }
      */
     
-    func reloadData() {
+    func reloadData(includeParents: Bool) {
         model.loadMaps()
         tableView.reloadData()
+        if includeParents {
+            if let parentViewControllers = navigationController?.viewControllers {
+                for controller in parentViewControllers {
+                    if let mapListViewController = controller as? MapListViewController {
+                        mapListViewController.needsReload = true
+                    }
+                }
+            }
+        }
     }
     
     func currentParent() -> MapListElement? {
@@ -322,6 +351,14 @@ class MapListViewController: UITableViewController {
     
     func objectForIndexPath(indexPath: NSIndexPath) -> MapListElement? {
         return currentElementList()[indexPath.row]
+    }
+    
+    func getSelectedObjects() -> [MapListElement] {
+        if let selection = tableView.indexPathsForSelectedRows {
+            return selection.map(self.objectForIndexPath).flatMap {$0}
+        } else {
+            return []
+        }
     }
 
 }

@@ -16,6 +16,8 @@ protocol MapListElement {
     
     var isLeaf: Bool { get }
     
+    var parent: MapFolder? { get set }
+    
 }
 
 
