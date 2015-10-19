@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
+    <entity name="Map" representedClassName=".Map" syncable="YES">
+        <attribute name="name" attributeType="String" minValueString="0" maxValueString="100" indexed="YES" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapFolder" inverseName="maps" inverseEntity="MapFolder" syncable="YES"/>
     </entity>
+    <entity name="MapFolder" representedClassName=".MapFolder" syncable="YES">
+        <attribute name="name" attributeType="String" minValueString="1" maxValueString="100" indexed="YES" syncable="YES"/>
+        <relationship name="maps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Map" inverseName="parent" inverseEntity="Map" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapFolder" inverseName="subFolders" inverseEntity="MapFolder" syncable="YES"/>
+        <relationship name="subFolders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MapFolder" inverseName="parent" inverseEntity="MapFolder" syncable="YES"/>
+    </entity>
+    <fetchRequest name="topLevelMapFolders" entity="MapFolder" predicateString="parent == nil"/>
+    <fetchRequest name="topLevelMaps" entity="Map" predicateString="parent == nil"/>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Map" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="MapFolder" positionX="-54" positionY="0" width="128" height="105"/>
     </elements>
 </model>

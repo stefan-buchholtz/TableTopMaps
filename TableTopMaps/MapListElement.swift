@@ -16,6 +16,6 @@ protocol MapListElement {
     
     var isLeaf: Bool { get }
     
-    
 }
+
 

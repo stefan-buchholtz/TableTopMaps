@@ -7,16 +7,15 @@
 //
 
 import Foundation
+import CoreData
 
-class Map: MapListElement {
+class Map: NSManagedObject, MapListElement {
     
-    var name: String
+    @NSManaged var name: String
+    @NSManaged var parent: MapFolder?
     
     let subElements = [MapListElement]()
     
     let isLeaf = true
     
-    init(name: String) {
-        self.name = name
-    }
 }

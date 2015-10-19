@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  MapViewController.swift
 //  TableTopMaps
 //
 //  Created by Stefan Buchholtz on 26.09.15.
@@ -8,12 +8,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
-    var detailItem: AnyObject? {
+    var map: Map? {
         didSet {
             // Update the view.
             self.configureView()
@@ -22,9 +21,10 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
+        if let map = self.map {
+            title = map.name
             if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
+                label.text = map.name
             }
         }
     }
