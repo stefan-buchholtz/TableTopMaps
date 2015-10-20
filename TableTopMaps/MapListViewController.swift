@@ -87,7 +87,8 @@ class MapListViewController: UITableViewController {
     }
 
     func newMapTapped(sender: AnyObject) {
-        getName("Name der Karte", message: "Bitte geben Sie einen Namen für die neue Karte an.", callback: newMap)
+        performSegueWithIdentifier("newMap", sender: self)
+        // getName("Name der Karte", message: "Bitte geben Sie einen Namen für die neue Karte an.", callback: newMap)
     }
     
     func newMap(name: String) {

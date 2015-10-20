@@ -61,7 +61,9 @@ class FolderSelectionViewController: UITableViewController {
 
     func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
         if let folder = folderForIndexPath(indexPath) {
-            cell.textLabel?.text = String(count: (folder.level + 1) * 4, repeatedValue: Character(" ")) + folder.name
+            cell.textLabel?.text = folder.name
+            cell.indentationLevel = folder.level + 1
+            cell.indentationWidth = 20.0
         } else {
             cell.textLabel?.text = "Karten"
         }

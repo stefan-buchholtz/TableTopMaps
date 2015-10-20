@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -64,6 +65,91 @@
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
+        <!--Neue Karte-->
+        <scene sceneID="r0E-Cb-6Bs">
+            <objects>
+                <navigationController title="Neue Karte" id="wYd-O8-8DA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wU8-hZ-bsK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fWM-IM-TAB" kind="relationship" relationship="rootViewController" id="sDT-Fj-qAc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YQt-H4-Jxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="129"/>
+        </scene>
+        <!--Neue Karte-->
+        <scene sceneID="VjM-y0-kb7">
+            <objects>
+                <viewController title="Neue Karte" id="fWM-IM-TAB" customClass="NewMapViewController" customModule="TableTopMaps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pu7-bg-2MJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="nKF-7R-uMz"/>
+                    </layoutGuides>
+                    <stackView key="view" opaque="NO" contentMode="scaleToFill" axis="vertical" id="oBj-AH-kFI">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAk-aH-JsT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84X-rH-NuW">
+                                        <rect key="frame" x="258" y="32" width="85" height="32"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                        <state key="normal" title="Kamera" image="Camera"/>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WAk-aH-JsT" secondAttribute="height" multiplier="75:12" id="7Dw-yl-jpH"/>
+                                    <constraint firstItem="84X-rH-NuW" firstAttribute="centerY" secondItem="WAk-aH-JsT" secondAttribute="centerY" id="ILN-ug-6hp"/>
+                                    <constraint firstItem="84X-rH-NuW" firstAttribute="centerX" secondItem="WAk-aH-JsT" secondAttribute="centerX" id="l4B-wU-1O9"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qsf-KL-1cX">
+                                <rect key="frame" x="0.0" y="96" width="600" height="440"/>
+                                <animations/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Ge-hM-SpT">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Hug-C9-cUm">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="fWM-IM-TAB" id="V6F-Ls-rN4"/>
+                                    <outlet property="delegate" destination="fWM-IM-TAB" id="DES-WT-ucR"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                    </stackView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Neue Karte" id="Tvk-5e-t3W"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yw9-SN-Rh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2196" y="129"/>
+        </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
@@ -120,6 +206,7 @@
                     <connections>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showMap" id="WmI-ra-jVo"/>
                         <segue destination="TNw-H4-Tva" kind="presentation" identifier="selectFolder" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="74X-V0-tq7"/>
+                        <segue destination="wYd-O8-8DA" kind="presentation" identifier="newMap" id="70o-gt-6PZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -162,11 +249,13 @@
                             <outlet property="delegate" destination="hHz-eX-fVl" id="C01-mI-bVJ"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ordner" id="Yqo-mm-Wva"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciZ-JP-cmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2280" y="-630"/>
+            <point key="canvasLocation" x="2196" y="-630"/>
         </scene>
         <!--Ordner-->
         <scene sceneID="azt-5H-4pQ">
@@ -202,6 +291,9 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Camera" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WmI-ra-jVo"/>
     </inferredMetricsTieBreakers>

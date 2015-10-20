@@ -22,6 +22,7 @@
 		6B895FA51BB6DFAC009FD770 /* MapListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA41BB6DFAC009FD770 /* MapListElement.swift */; settings = {ASSET_TAGS = (); }; };
 		6BA086061BC657D400682FC2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086051BC657D400682FC2 /* ArrayExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		6BA086081BD4419C00682FC2 /* FolderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		6BC37EE61BD6D58300050FF8 /* NewMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		6B895FA41BB6DFAC009FD770 /* MapListElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapListElement.swift; sourceTree = "<group>"; };
 		6BA086051BC657D400682FC2 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtension.swift; path = Utils/ArrayExtension.swift; sourceTree = "<group>"; };
 		6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderSelectionViewController.swift; sourceTree = "<group>"; };
+		6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				6B895F6C1BB6DC49009FD770 /* AppDelegate.swift */,
 				6B895F711BB6DC49009FD770 /* MapListViewController.swift */,
 				6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */,
+				6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */,
 				6B895F731BB6DC49009FD770 /* MapViewController.swift */,
 				6B895F751BB6DC49009FD770 /* Main.storyboard */,
 				6B895F781BB6DC49009FD770 /* Assets.xcassets */,
@@ -304,6 +307,7 @@
 				6BA086081BD4419C00682FC2 /* FolderSelectionViewController.swift in Sources */,
 				6BA086061BC657D400682FC2 /* ArrayExtension.swift in Sources */,
 				6B895F721BB6DC49009FD770 /* MapListViewController.swift in Sources */,
+				6BC37EE61BD6D58300050FF8 /* NewMapViewController.swift in Sources */,
 				6B895FA31BB6DF73009FD770 /* MapFolder.swift in Sources */,
 				6B895FA51BB6DFAC009FD770 /* MapListElement.swift in Sources */,
 				6B1857701BB9AF7100819D47 /* TableTopMapsDataModel.swift in Sources */,
