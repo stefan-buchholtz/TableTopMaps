@@ -10,6 +10,10 @@ import UIKit
 
 class NewMapViewController: UIViewController {
 
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var liveCameraView: UIView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +22,10 @@ class NewMapViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func cameraButtonTapped(sender: AnyObject) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
