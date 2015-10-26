@@ -169,6 +169,9 @@ class MapListViewController: UITableViewController {
             case "selectFolder":
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! FolderSelectionViewController
                 controller.mapListViewController = self
+            case "newMap":
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! NewMapViewController
+                controller.mapListViewController = self
             default:
                 break
             }
