@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class NewMapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -17,6 +18,7 @@ class NewMapViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     let okButton = UIBarButtonItem(title: "Ok", style: .Plain, target: nil, action: "ok:")
+    var videoCaptureSession: AVCaptureSession?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +29,16 @@ class NewMapViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
         self.navigationItem.rightBarButtonItem = okButton
         
+        liveCameraView.hidden = !startCameraPreview()
+
         validateControls()
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        stopCameraPreview()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,6 +63,33 @@ class NewMapViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func validateControls() {
         okButton.enabled = nameField.text != nil && nameField.text != ""
+    }
+    
+    func startCameraPreview() -> Bool {
+        videoCaptureSession = AVCaptureSession()
+        videoCaptureSession!.sessionPreset = AVCaptureSessionPresetMedium
+        
+        let captureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: videoCaptureSession)
+        captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        captureVideoPreviewLayer.frame = liveCameraView.bounds
+        liveCameraView.layer.addSublayer(captureVideoPreviewLayer)
+        
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        do {
+            let input = try AVCaptureDeviceInput(device: device)
+            videoCaptureSession!.addInput(input)
+            videoCaptureSession!.startRunning()
+            return true
+        } catch {
+            let nserror = error as NSError
+            NSLog(nserror.description)
+            return false
+        }
+    }
+    
+    func stopCameraPreview() {
+        videoCaptureSession?.stopRunning()
+        videoCaptureSession = nil
     }
     
     // MARK: - UICollectionView

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B1857701BB9AF7100819D47 /* TableTopMapsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18576F1BB9AF7100819D47 /* TableTopMapsDataModel.swift */; settings = {ASSET_TAGS = (); }; };
+		6B06A62D1BDE7D220048F2A9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B06A62C1BDE7D220048F2A9 /* AVFoundation.framework */; };
+		6B06A62F1BDE910E0048F2A9 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06A62E1BDE910E0048F2A9 /* CameraPreview.swift */; };
+		6B1857701BB9AF7100819D47 /* TableTopMapsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18576F1BB9AF7100819D47 /* TableTopMapsDataModel.swift */; };
 		6B895F6D1BB6DC49009FD770 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895F6C1BB6DC49009FD770 /* AppDelegate.swift */; };
 		6B895F701BB6DC49009FD770 /* TableTopMaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B895F6E1BB6DC49009FD770 /* TableTopMaps.xcdatamodeld */; };
 		6B895F721BB6DC49009FD770 /* MapListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895F711BB6DC49009FD770 /* MapListViewController.swift */; };
@@ -17,12 +19,12 @@
 		6B895F7C1BB6DC49009FD770 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B895F7A1BB6DC49009FD770 /* LaunchScreen.storyboard */; };
 		6B895F871BB6DC49009FD770 /* TableTopMapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895F861BB6DC49009FD770 /* TableTopMapsTests.swift */; };
 		6B895F921BB6DC49009FD770 /* TableTopMapsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895F911BB6DC49009FD770 /* TableTopMapsUITests.swift */; };
-		6B895FA11BB6DD59009FD770 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA01BB6DD59009FD770 /* Map.swift */; settings = {ASSET_TAGS = (); }; };
-		6B895FA31BB6DF73009FD770 /* MapFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA21BB6DF73009FD770 /* MapFolder.swift */; settings = {ASSET_TAGS = (); }; };
-		6B895FA51BB6DFAC009FD770 /* MapListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA41BB6DFAC009FD770 /* MapListElement.swift */; settings = {ASSET_TAGS = (); }; };
-		6BA086061BC657D400682FC2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086051BC657D400682FC2 /* ArrayExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		6BA086081BD4419C00682FC2 /* FolderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		6BC37EE61BD6D58300050FF8 /* NewMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		6B895FA11BB6DD59009FD770 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA01BB6DD59009FD770 /* Map.swift */; };
+		6B895FA31BB6DF73009FD770 /* MapFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA21BB6DF73009FD770 /* MapFolder.swift */; };
+		6B895FA51BB6DFAC009FD770 /* MapListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B895FA41BB6DFAC009FD770 /* MapListElement.swift */; };
+		6BA086061BC657D400682FC2 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086051BC657D400682FC2 /* ArrayExtension.swift */; };
+		6BA086081BD4419C00682FC2 /* FolderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */; };
+		6BC37EE61BD6D58300050FF8 /* NewMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B06A62C1BDE7D220048F2A9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6B06A62E1BDE910E0048F2A9 /* CameraPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		6B18576F1BB9AF7100819D47 /* TableTopMapsDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableTopMapsDataModel.swift; path = DataModel/TableTopMapsDataModel.swift; sourceTree = "<group>"; };
 		6B895F691BB6DC49009FD770 /* TableTopMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableTopMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B895F6C1BB6DC49009FD770 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B06A62D1BDE7D220048F2A9 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +100,7 @@
 		6B895F601BB6DC49009FD770 = {
 			isa = PBXGroup;
 			children = (
+				6B06A62C1BDE7D220048F2A9 /* AVFoundation.framework */,
 				6B895F6B1BB6DC49009FD770 /* TableTopMaps */,
 				6B895F851BB6DC49009FD770 /* TableTopMapsTests */,
 				6B895F901BB6DC49009FD770 /* TableTopMapsUITests */,
@@ -121,6 +127,7 @@
 				6B895F711BB6DC49009FD770 /* MapListViewController.swift */,
 				6BA086071BD4419C00682FC2 /* FolderSelectionViewController.swift */,
 				6BC37EE51BD6D58300050FF8 /* NewMapViewController.swift */,
+				6B06A62E1BDE910E0048F2A9 /* CameraPreview.swift */,
 				6B895F731BB6DC49009FD770 /* MapViewController.swift */,
 				6B895F751BB6DC49009FD770 /* Main.storyboard */,
 				6B895F781BB6DC49009FD770 /* Assets.xcassets */,
@@ -310,6 +317,7 @@
 				6BC37EE61BD6D58300050FF8 /* NewMapViewController.swift in Sources */,
 				6B895FA31BB6DF73009FD770 /* MapFolder.swift in Sources */,
 				6B895FA51BB6DFAC009FD770 /* MapListElement.swift in Sources */,
+				6B06A62F1BDE910E0048F2A9 /* CameraPreview.swift in Sources */,
 				6B1857701BB9AF7100819D47 /* TableTopMapsDataModel.swift in Sources */,
 				6B895F741BB6DC49009FD770 /* MapViewController.swift in Sources */,
 			);
